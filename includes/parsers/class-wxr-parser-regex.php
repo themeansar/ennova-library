@@ -9,7 +9,7 @@
 /**
  * WXR Parser that uses regular expressions. Fallback for installs without an XML parser.
  */
-class ENO_WXR_Parser_Regex {
+class ANS_WXR_Parser_Regex {
 	var $authors = array();
 	var $posts = array();
 	var $categories = array();

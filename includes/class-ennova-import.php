@@ -67,8 +67,8 @@ class Ennova_Library {
      * @since    1.0.0
      */
     public function __construct() {
-        if (defined('ENNOVA_LIBRARY_VERSION')) {
-            $this->version = ENNOVA_LIBRARY_VERSION;
+        if (defined('Ennova_Library_VERSION')) {
+            $this->version = Ennova_Library_VERSION;
         } else {
             $this->version = '1.0.0';
         }
@@ -102,24 +102,24 @@ class Ennova_Library {
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ennova-library-loader.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ennova-import-loader.php';
 
         /**
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ennova-library-i18n.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ennova-import-i18n.php';
 
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ennova-library-admin.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ennova-import-admin.php';
 
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ennova-library-public.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ennova-import-public.php';
 
         $this->loader = new Ennova_Library_Loader();
     }
@@ -135,7 +135,7 @@ class Ennova_Library {
      */
     private function set_locale() {
 
-        $plugin_i18n = new Ennova_Library_i18n();
+        $plugin_i18n = new Ennova_library_i18n();
 
         $this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
     }
@@ -173,12 +173,12 @@ class Ennova_Library {
         //Setting upload Dir
         $upload = wp_upload_dir();
         $upload_dir = $upload['basedir'];
-        $upload_dir = $upload_dir . '/ennova_library_data';
+        $upload_dir = $upload_dir . '/ennova_import_data';
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755);
         }
         //Getting demo data
-        $theme_data_api = wp_remote_get(esc_url_raw("https://wpennova.com/wp-json/wp/v2/demos/" . $theme_id));
+        $theme_data_api = wp_remote_get(esc_url_raw("https://demos.themeansar.com/wp-json/wp/v2/demos/" . $theme_id));
         $theme_data_api_body = wp_remote_retrieve_body($theme_data_api);
         $theme_data_api = json_decode($theme_data_api_body, TRUE);
         // print_r($theme_data_api);
@@ -214,7 +214,7 @@ class Ennova_Library {
         }
 
         // echo 'Pages import started! <br>';
-        $import = new ENO_WP_Import();
+        $import = new ANS_WP_Import();
         $import->dispatch();
 
         //  echo 'importing widget . . . <br>';
@@ -229,12 +229,12 @@ class Ennova_Library {
         wp_set_sidebars_widgets($sidebars_widgets);
 
         //reset Done
-        $ennova_libraryer = new Ennova_Library();
-        $wie_import_results = $ennova_libraryer->wie_import_data($wiget_file);
+        $ennova_importer = new Ennova_Library();
+        $wie_import_results = $ennova_importer->wie_import_data($wiget_file);
         // echo 'Widget import done<br>';
         //echo 'Customizer import started!<br> ';
-        $ennova_libraryer->ans_import_customizer_settings($customizer_file);
-        update_option( 'ansar_demo_installed', $theme_id );
+        $ennova_importer->ans_import_customizer_settings($customizer_file);
+        update_option( 'ennova_demo_installed', $theme_id );
     }
 
     /**
@@ -246,7 +246,7 @@ class Ennova_Library {
      */
     private function define_admin_hooks() {
 
-        $plugin_admin = new Ennova_Library_Admin($this->get_plugin_name(), $this->get_version());
+        $plugin_admin = new Ennova_library_Admin($this->get_plugin_name(), $this->get_version());
         $this->loader->add_action('wp_ajax_import_action', $plugin_admin, 'import_data_ajax');
         $this->loader->add_action('admin_menu', $plugin_admin, 'register_theme_page');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
@@ -262,7 +262,7 @@ class Ennova_Library {
      */
     private function define_public_hooks() {
 
-        $plugin_public = new Ennova_Library_Public($this->get_plugin_name(), $this->get_version());
+        $plugin_public = new Ennova_library_Public($this->get_plugin_name(), $this->get_version());
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
@@ -292,7 +292,7 @@ class Ennova_Library {
      * The reference to the class that orchestrates the hooks with the plugin.
      *
      * @since     1.0.0
-     * @return    Ennova_Library_Loader    Orchestrates the hooks of the plugin.
+     * @return    Ennova_library_Loader    Orchestrates the hooks of the plugin.
      */
     public function get_loader() {
         return $this->loader;

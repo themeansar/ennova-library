@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:       Ennova Library
- * Plugin URI:        https://wpennova.com/
- * Description:       Ennova Library for Importing demos data Ennova Theme.
- * Version:           0.0.2
+ * Plugin URI:        https://themeansar.com/
+ * Description:       Ennova Library for Importing demo data Themeansar Theme.
+ * Version:           0.3
  * Author:            Themeansar
  * Author URI:        https://themeansar.com/
  * Text Domain:       ennova-library
@@ -17,34 +17,34 @@ if (!defined('WPINC')) {
     die;
 }
 
-define('ENNOVA_LIBRARY_VERSION', '0.0.1');
+define('Ennova_Library_VERSION', '0.3');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-ennova-library-activator.php
+ * This action is documented in includes/class-ennova-import-activator.php
  */
-function activate_ennova_library() {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-ennova-library-activator.php';
-    Ennova_Library_Activator::activate();
+function activate_ennova_import() {
+    require_once plugin_dir_path(__FILE__) . 'includes/class-ennova-import-activator.php';
+    Ansar_Import_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-ennova-library-deactivator.php
+ * This action is documented in includes/class-ennova-import-deactivator.php
  */
-function deactivate_ennova_library() {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-ennova-library-deactivator.php';
-    Ennova_Library_Deactivator::deactivate();
+function deactivate_ennova_import() {
+    require_once plugin_dir_path(__FILE__) . 'includes/class-ennova-import-deactivator.php';
+    Ennova_Import_Deactivator::deactivate();
 }
 
-register_activation_hook(__FILE__, 'activate_ennova_library');
-register_deactivation_hook(__FILE__, 'deactivate_ennova_library');
+register_activation_hook(__FILE__, 'activate_ennova_import');
+register_deactivation_hook(__FILE__, 'deactivate_ennova_import');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-ennova-library.php';
+require plugin_dir_path(__FILE__) . 'includes/class-ennova-import.php';
 require plugin_dir_path(__FILE__) . 'includes/parsers.php';
 
 if (!class_exists('WP_Importer')) {
@@ -66,10 +66,10 @@ require plugin_dir_path(__FILE__) . 'includes/class-wp-import.php';
  *
  * @since    1.0.0
  */
-function run_ennova_library() {
+function run_ennova_import() {
 
-    $plugin = new Ennova_Library();
+    $plugin = new Ennova_library();
     $plugin->run();
 }
 
-run_ennova_library();
+run_ennova_import();

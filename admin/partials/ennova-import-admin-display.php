@@ -32,7 +32,7 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
 
     <!-- This file should primarily consist of HTML with a little bit of PHP. -->
     <?php
-    $cat_data = wp_remote_get(esc_url_raw('https://wpennova.com/wp-json/wp/v2/categories'));
+    $cat_data = wp_remote_get(esc_url_raw('https://demos.themeansar.com/wp-json/wp/v2/categories'));
     $cat_data_body = wp_remote_retrieve_body($cat_data);
     $all_categories = json_decode($cat_data_body, TRUE);
 
@@ -42,7 +42,7 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
     $theme_name = $theme_data->get('Name');
     $theme_slug = $theme_data->get('TextDomain');
 
-    $theme_data_api = wp_remote_get(esc_url_raw("https://wpennova.com/wp-json/wp/v2/demos/?orderby=menu_order&order=asc&search=%27" . urlencode($theme_name) . "%27"));
+    $theme_data_api = wp_remote_get(esc_url_raw("https://demos.themeansar.com/wp-json/wp/v2/demos/?orderby=menu_order&order=asc&search=%27" . urlencode($theme_name) . "%27"));
     $theme_data_api_body = wp_remote_retrieve_body($theme_data_api);
     $all_demos = json_decode($theme_data_api_body, TRUE);
 
@@ -71,7 +71,6 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
             <!-- Filter Controls -->
             <div uk-filter="target: .js-filter">
 
-                <div class="wp-filter">
                 <ul class="uk-subnav uk-subnav-pill">
                     <li class="uk-active" uk-filter-control><a href="#">All</a></li>
                     <?php
@@ -88,7 +87,6 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
 
 
                 </ul>
-            </div>
 
                 <ul class="js-filter uk-child-width-1-2 uk-child-width-1-3@m" uk-grid>
                     <?php
@@ -97,7 +95,7 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
                         ?>
                         <li data-color="<?php
                         foreach ($demo['categories'] as $in_cat) {
-                            echo esc_attr("cat_") . esc_attr($in_cat . " ");
+                            echo esc_attr("cat_" . $in_cat . " ");
                         }
                         ?>">
                             <!-- product -->
@@ -105,7 +103,7 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
                                 <div class="theme-screenshot">
                                     <img src="<?php echo esc_url($demo['preview_url']); ?>" >
                                 </div>
-                                <span class="more-details btn-preview" data-id="<?php echo esc_attr($demo['id']); ?>" data-live="<?php  if(get_option( 'ansar_demo_installed' )== $demo['id']){ echo 1; }?>" data-toggle="modal" data-target="#AnsardemoPreview"><?php esc_html_e('Preview','ennova-library'); ?></span>
+                                <span class="more-details btn-preview" data-id="<?php echo esc_attr($demo['id']); ?>" data-live="<?php  if(get_option( 'ennova_demo_installed' )== $demo['id']){ echo esc_attr('1'); }?>" data-toggle="modal" data-target="#EnnovademoPreview"><?php esc_html_e('Preview','ennova-library'); ?></span>
                                 <div class="theme-author"><?php esc_html_e('By Themeansar','ennova-library'); ?> </div>
                                 <div class="theme-id-container">
                                     <h2 class="theme-name" id=""><?php echo esc_attr($demo['title']['rendered']); ?></h2>
@@ -117,10 +115,10 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
                                         <?php } else {
               
                                             ?>
-                                            <a class="button activate live-btn-<?php echo $demo['id']; ?> <?php  if(get_option( 'ansar_demo_installed' )!= $demo['id']){ echo "uk-hidden"; }?> " target="_new" data-id="<?php echo esc_attr($demo['id']); ?>"  href="<?php echo home_url(); ?>"><?php esc_html_e('Live Preview','ennova-library'); ?></a>
-                                            <button type="button" class="<?php  if(get_option( 'ansar_demo_installed' )== $demo['id']){ echo "uk-hidden"; }?> button activate btn-import btn-import-<?php echo $demo['id']; ?>" href="#" data-id="<?php echo $demo['id']; ?>"><?php esc_html_e('Import','ennova-library'); ?></button>
+                                            <a class="button activate live-btn-<?php echo esc_attr($demo['id']); ?> <?php  if(get_option( 'ennova_demo_installed' )!= $demo['id']){ echo "uk-hidden"; }?> " target="_new" data-id="<?php echo esc_attr($demo['id']); ?>"  href="<?php echo esc_url(home_url()); ?>"><?php esc_html_e('Live Preview','ennova-library'); ?></a>
+                                            <button type="button" class="<?php  if(get_option( 'ennova_demo_installed' )== $demo['id']){ echo "uk-hidden"; }?> button activate btn-import btn-import-<?php echo esc_attr($demo['id']); ?>" href="#" data-id="<?php echo esc_attr($demo['id']); ?>"><?php esc_html_e('Import','ennova-library'); ?></button>
                                             <?php }  ?>
-                                        <a class="button button-primary load-customize hide-if-no-customize btn-preview" data-id="<?php echo $demo['id']; ?>" data-toggle="modal" data-target="#AnsardemoPreview" href="#"><?php esc_html_e('Preview','ennova-library'); ?></a>
+                                        <a class="button button-primary load-customize hide-if-no-customize btn-preview" data-id="<?php echo $demo['id']; ?>" data-toggle="modal" data-target="#EnnovademoPreview" href="#"><?php esc_html_e('Preview','ennova-library'); ?></a>
 
                                     </div>
                                 </div>    
@@ -152,14 +150,14 @@ if ($tehme_data->get('Author') != 'themeansar' && $tehme_data->get('Author') != 
 
 
 <!-- Modal -->
-<div id="AnsardemoPreview" tabindex="-1" class="uk-modal-full" uk-modal>
+<div id="EnnovademoPreview" tabindex="-1" class="uk-modal-full" uk-modal>
     <!-- main include -->   
     <div class="theme-install-overlay wp-full-overlay expanded iframe-ready" style="display: block;">
         <div class="wp-full-overlay-sidebar">
             
             <div class="wp-full-overlay-header">
                 <button class="close-full-overlay"><span class="screen-reader-text"><?php esc_html_e('Close', 'ennova-library'); ?></span></button>
-                <a class="button activate preview-live-btn uk-hidden" target="_new"  href="<?php echo home_url(); ?>"> <?php esc_html_e('Live Preview','ennova-library'); ?></a>
+                <a class="button activate preview-live-btn uk-hidden" target="_new"  href="<?php echo esc_url(home_url()); ?>"> <?php esc_html_e('Live Preview','ennova-library'); ?></a>
                 <button type="button" class="button button-primary import-priview activate btn-import" href="#" data-id="0"><?php esc_html_e('Import', 'ennova-library'); ?></button>
                 <a class="button activate preview-buy uk-hidden" target="_new" href="#" ><?php esc_html_e('Buy Now', 'ennova-library'); ?></a>
             </div>

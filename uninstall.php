@@ -19,10 +19,10 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://wpennova.com/
+ * @link       https://themeansar.com/
  * @since      1.0.0
  *
- * @package    Wnnova_Library
+ * @package    Ennova_Library
  */
 
 // If uninstall not called from WordPress, then exit.

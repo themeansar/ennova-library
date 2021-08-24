@@ -9,7 +9,7 @@
 /**
  * WXR Parser that makes use of the SimpleXML PHP extension.
  */
-class ENO_WXR_Parser_SimpleXML {
+class ANS_WXR_Parser_SimpleXML {
 	function parse( $file ) {
 		$authors = $posts = $categories = $tags = $terms = array();
 

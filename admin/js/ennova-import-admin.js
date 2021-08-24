@@ -32,7 +32,7 @@
 })(jQuery);
 jQuery(document).ready(function ($) {
 
-    // console.log(ansar_theme_object[0]);
+    // console.log(ennova_theme_object[0]);
 
 // Product Show Method
     jQuery("#product_filter a").click(function (e) {
@@ -43,20 +43,20 @@ jQuery(document).ready(function ($) {
     jQuery(".btn-preview").click(function () {
         jQuery(".preview-live-btn").addClass('uk-hidden');
         jQuery(".import-priview").removeClass('uk-hidden');
-        for (var i = 0; i < ansar_theme_object.length; i++) {
-            if (ansar_theme_object[i].id === jQuery(this).data('id')) {
-                //console.log(ansar_theme_object[i]);
-                jQuery("#theme_preview").attr('src', ansar_theme_object[i].preview_link);
-                jQuery(".theme-screenshot").attr('src', ansar_theme_object[i].preview_url);
-                //  alert(my_ajax_object.theme_name +'->'+ ansar_theme_object[i].theme_name);
-                if (my_ajax_object.theme_name === ansar_theme_object[i].theme_name) {
+        for (var i = 0; i < ennova_theme_object.length; i++) {
+            if (ennova_theme_object[i].id === jQuery(this).data('id')) {
+                //console.log(ennova_theme_object[i]);
+                jQuery("#theme_preview").attr('src', ennova_theme_object[i].preview_link);
+                jQuery(".theme-screenshot").attr('src', ennova_theme_object[i].preview_url);
+                //  alert(my_ajax_object.theme_name +'->'+ ennova_theme_object[i].theme_name);
+                if (my_ajax_object.theme_name === ennova_theme_object[i].theme_name) {
                     jQuery(".import-priview").attr('data-id', jQuery(this).data('id'));
                     jQuery(".import-priview").removeClass('uk-hidden');
                     jQuery(".preview-buy").addClass('uk-hidden');
                 } else {
                     jQuery(".import-priview").addClass('uk-hidden');
                     jQuery(".preview-buy").removeClass('uk-hidden');
-                    jQuery(".preview-buy").attr('src', ansar_theme_object[i].pro_link);
+                    jQuery(".preview-buy").attr('src', ennova_theme_object[i].pro_link);
                 }
 
             }
@@ -68,7 +68,7 @@ jQuery(document).ready(function ($) {
         }
 
 
-        UIkit.modal('#AnsardemoPreview').show();
+        UIkit.modal('#EnnovademoPreview').show();
 
     });
 
@@ -111,13 +111,13 @@ jQuery(document).ready(function ($) {
 
     jQuery(".close-full-overlay").click(function () {
 
-        UIkit.modal('#AnsardemoPreview').hide();
+        UIkit.modal('#EnnovademoPreview').hide();
 
     });
 
     jQuery(".btn-import").click(function () {
         jQuery("#theme_id").val(jQuery(this).data('id'));
-        UIkit.modal('#AnsardemoPreview').hide();
+        UIkit.modal('#EnnovademoPreview').hide();
         UIkit.modal('#Confirm').show();
 
     });
@@ -140,7 +140,7 @@ jQuery(document).ready(function ($) {
             url: my_ajax_object.ajax_url,
             data: data,
             success: function (data) {
-                // jQuery(".demo-ansar-container").hide();
+                // jQuery(".demo-ennova-container").hide();
                 jQuery('.btn-import-' + theme_id).addClass("uk-hidden");
                 jQuery('.live-btn-' + theme_id).removeClass("uk-hidden");
 
@@ -160,7 +160,3 @@ jQuery(document).ready(function ($) {
 
 
 });
-
-
-
-

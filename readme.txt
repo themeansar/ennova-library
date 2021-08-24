@@ -2,21 +2,21 @@
 Contributors: Themeansar
 Tags: theme demos, demo, importer, one click import
 Requires at least: 4.7
-Tested up to: 5.7
-Stable tag: 0.0.2
+Tested up to: 5.6
+Stable tag: 0.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Import your demo content, widgets and theme settings with one click for Ennova Theme
+Import your demo content, widgets and theme settings with one click for Themeansar Theme
 
 == Description ==
 
-Import <a href="https://wpennova.com/" target="_blank" rel="nofollow">Ennova</a> official theme demos content
+Import <a href="https://themeansar.com/" target="_blank" rel="nofollow">Themeansar</a> official themes demo content
 
 = Requirements =
 
 * WordPress 4.7 or later.
-* [Ennova Theme](https://wpennova.com/)
+* [Themeansar Themes](https://themeansar.com/)
 
 
 == Installation ==
@@ -28,7 +28,7 @@ Import <a href="https://wpennova.com/" target="_blank" rel="nofollow">Ennova</a>
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don’t need to leave your web browser. To do an automatic install of Ennova Library, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
-In the search field type “Ansar Import” and click Search Plugins. Once you’ve found our demo importer plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking “Install Now”.
+In the search field type “Ennova Library” and click Search Plugins. Once you’ve found our demo importer plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking “Install Now”.
 
 = Manual installation =
 
@@ -46,7 +46,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 = What themes this plugin supports? =
 
-* The plugin currently only support Ennova theme.
+* The plugin currently only supports Themeansar themes.
 
 
 == Screenshots ==
@@ -57,8 +57,5 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
-= 0.0.1 - 06-18-2021 =
-* Relesed
-
-= 0.0.2 - 07-17-2021 =
-* Fixed escaping issue
+= 0.3 =
+* Relesed.
